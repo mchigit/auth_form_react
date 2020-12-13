@@ -1,0 +1,27 @@
+.auth-form-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-form-header {
+  margin-bottom: 20px;
+}
+
+.auth-form-card {
+  width: 350px !important;
+}
+
+.form-labels {
+  text-align: left;
+}
+
+.auth-form-fields,
+.auth-form-buttons {
+  margin-top: 20px !important;
+}
+
+.auth-form-buttons {
+  width: 100%;
+}
