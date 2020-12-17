@@ -2,10 +2,10 @@ import { useState, Fragment } from "react";
 import { Card, Menu, Form, Button } from "semantic-ui-react";
 
 import "../css/AuthForm.css";
+
+
 function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
-  const [isSigningUp, setIsSigningUp] = useState(false);
-  const [isLoggingIn, setIsLoggingIn] = useState(false)
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -39,7 +39,7 @@ function AuthForm() {
                     placeholder="Email Address"
                     name="loginEmail"
                     type="email"
-                    value={loginEmail || ""}
+                    value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
                   ></input>
                 </Form.Field>
@@ -49,7 +49,7 @@ function AuthForm() {
                     placeholder="Password"
                     name="loginPassword"
                     type="password"
-                    value={loginPassword || ""}
+                    value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                   ></input>
                 </Form.Field>
@@ -81,7 +81,6 @@ function AuthForm() {
                 ></input>
               </Form.Field>
               <Button
-                loading={isSigningUp}
                 className="auth-form-buttons"
                 color="teal"
               >
