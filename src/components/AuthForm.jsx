@@ -57,8 +57,10 @@ function AuthForm() {
                   Login
                 </Button>
               </Form>
+              <div className="google-login"></div>
             </Fragment>
           ) : (
+            <Fragment>
             <Form>
               <Form.Field className="auth-form-fields">
                 <label className="form-labels">Email</label>
@@ -87,6 +89,8 @@ function AuthForm() {
                 Sign up
               </Button>
             </Form>
+            <div className="google-login"></div>
+            </Fragment>
           )}
         </Card.Content>
       </Card>
