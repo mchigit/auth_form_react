@@ -7,25 +7,18 @@ import "../css/AuthForm.css";
 
 import firebase from "firebase";
 
-async function signUpUser(email, password) {
+async function authenticateUser(email, password, isLogin) {
   try {
-    const user = await auth.createUserWithEmailAndPassword(email, password);
+    const user = isLogin
+      ? await auth.signInWithEmailAndPassword(email, password)
+      : await auth.createUserWithEmailAndPassword(email, password);
     console.log(user);
   } catch (err) {
     console.log(err);
   }
 }
 
-async function loginUser(email, password) {
-  try {
-    const user = await auth.signInWithEmailAndPassword(email, password);
-    console.log(user);
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-function renderLoggedIn(logOutFn) {
+function renderLoggedIn() {
   return (
     <div className="loggedIn-wrapper">
       <h1>You are logged in!</h1>
@@ -47,10 +40,8 @@ function AuthForm() {
 
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
-
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => setUser(user));
-  });
+  
+  auth.onAuthStateChanged((user) => setUser(user));
 
   useEffect(() => {
     if (!user) {
@@ -106,7 +97,7 @@ function AuthForm() {
                       ></input>
                     </Form.Field>
                     <Button
-                      onClick={() => loginUser(loginEmail, loginPassword)}
+                      onClick={() => authenticateUser(loginEmail, loginPassword, true)}
                       className="auth-form-buttons"
                       color="green"
                     >
@@ -141,9 +132,7 @@ function AuthForm() {
                     <Button
                       className="auth-form-buttons"
                       color="teal"
-                      onClick={() =>
-                        signUpUser(signupEmail, signupPassword)
-                      }
+                      onClick={() => authenticateUser(signupEmail, signupPassword, false)}
                     >
                       Sign up
                     </Button>
